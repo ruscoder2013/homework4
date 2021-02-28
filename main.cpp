@@ -4,7 +4,7 @@
 #include "SVGEditor.h"
 #include "Observer.h"
 
-class ConsoleView: public EditorObserver {
+class ConsoleView: public EditorObserver  {
 public:
     ConsoleView(SvgEitor *editor, Controller *controller) {
         this->controller = controller;
