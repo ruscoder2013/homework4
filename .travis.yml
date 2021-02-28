@@ -12,10 +12,6 @@ script:
 - cmake ..
 - cmake --build .
 
-- cmake --build . --target package
-- cd ..
-- doxygen Doxyfile
-
 deploy:
   provider: script
   skip_cleanup: true
