@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<XMI xmi.version="1.2" xmlns:UML="http://schema.omg.org/spec/UML/1.4" verified="false" timestamp="2021-02-28T18:39:28">
+<XMI xmi.version="1.2" xmlns:UML="http://schema.omg.org/spec/UML/1.4" verified="false" timestamp="2021-02-28T19:03:19">
  <XMI.header>
   <XMI.documentation>
    <XMI.exporter>umbrello uml modeller http://umbrello.kde.org</XMI.exporter>
@@ -473,7 +473,7 @@
      </UML:Namespace.ownedElement>
      <XMI.extension xmi.extender="umbrello">
       <diagrams resolution="96">
-       <diagram documentation="" showops="1" zoom="61,52787621294765" canvaswidth="1616.41" griddotcolor="#d3d3d3" name="Диаграмма классов" showopsig="1" showatts="1" usefillcolor="1" snapy="25" localid="-1" backgroundcolor="#ffffff" linewidth="0" isopen="1" xmi.id="uHNM7RWGWJKjw" showpackage="1" showscope="1" canvasheight="893.242" snapcsgrid="0" textcolor="#000000" showgrid="0" linecolor="#ff0000" showpubliconly="0" showstereotype="1" snapgrid="0" font="Ubuntu,11,-1,5,50,0,0,0,0,0" type="1" showattsig="1" showattribassocs="1" fillcolor="#ffff00" snapx="25">
+       <diagram documentation="" showops="1" zoom="53,5025010547371" canvaswidth="1616.41" griddotcolor="#d3d3d3" name="Диаграмма классов" showopsig="1" showatts="1" usefillcolor="1" snapy="25" localid="-1" backgroundcolor="#ffffff" linewidth="0" isopen="1" xmi.id="uHNM7RWGWJKjw" showpackage="1" showscope="1" canvasheight="893.242" snapcsgrid="0" textcolor="#000000" showgrid="0" linecolor="#ff0000" showpubliconly="0" showstereotype="1" snapgrid="0" font="Ubuntu,11,-1,5,50,0,0,0,0,0" type="1" showattsig="1" showattribassocs="1" fillcolor="#ffff00" snapx="25">
         <widgets>
          <interfacewidget drawascircle="0" showattsigs="601" x="-1238.21" usefillcolor="1" width="266" usesdiagramusefillcolor="0" localid="uwDv8lh1Ak23o" linewidth="0" xmi.id="u6jFvV2cC907c" showpackage="0" showscope="1" textcolor="#000000" showopsigs="601" isinstance="0" height="153" linecolor="#ff0000" showstereotype="1" showpubliconly="0" font="Ubuntu,11,-1,5,50,0,0,0,0,0" autoresize="1" usesdiagramfillcolor="0" y="-921.579" showoperations="1" fillcolor="#ffff00" showattributes="0"/>
          <classwidget showattsigs="601" x="-644.432" usefillcolor="1" width="41" usesdiagramusefillcolor="0" localid="u9W1480123UtK" linewidth="0" xmi.id="uItZBu3muaTH1" showpackage="1" showscope="1" textcolor="#000000" showopsigs="601" isinstance="0" height="33" linecolor="#ff0000" showstereotype="1" showpubliconly="0" font="Ubuntu,11,-1,5,50,0,0,0,0,0" autoresize="1" usesdiagramfillcolor="0" y="-88.7111" showoperations="1" fillcolor="#ffff00" showattributes="1"/>
