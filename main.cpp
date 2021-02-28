@@ -1,121 +1,88 @@
 #include <iostream>
-#include <vector>
-#include <cstdio>
 #include <string>
-#include <list>
+#include "Controller.h"
+#include "SVGEditor.h"
+#include "Observer.h"
 
-class VectorEditor {
+class ConsoleView: public Observer {
 public:
-    VectorEditor() {
-        
+    ConsoleView(SvgEitor *editor, Controller *controller) {
+        this->controller = controller;
+        editor->addObserver(this);
     }
-    void CreateDocumnet() {
-        std::cout << "create document" << std::endl;
+    void start() {
+        bool exit = false;
+        while(!exit) {
+            switch(getchar()) {
+                case 'o': 
+                    controller->openDocument("1");
+                    break;
+                case 'n': 
+                    controller->createDocument();
+                    break;
+                case 's': 
+                    controller->saveDocument("2");
+                    break;
+                case 'l': 
+                    controller->createLine(0,0,0,0);
+                    break;
+                case 'c':
+                    controller->createCircle(0,0,0);
+                    break;
+                case 'k':
+                    controller->createRectangle(0,0,0,0);
+                    break;
+                case 'r': 
+                    controller->removeObject(0);
+                    break;
+                case 'q': {
+                    std::cout << "quite" << std::endl;
+                    exit = true;
+                    break;
+                }
+                default:
+                    break;
+            }
+        }
     }
-    void SaveDocument() {
+    void documentSaved(std::string path) override {
+        (void)path;
         std::cout << "save document" << std::endl;
     }
-    void OpenDocument() {
-        std::cout << "open document" << std::endl;
+    void createdCircle(const Circle* circle) {
+        (void)circle;
+        std::cout << "circle create" << std::endl; ;
     }
-};
-
-class IGraphicObject {
-public:
-    virtual void draw() = 0;
-    long long getId()
-    
-};
-
-class Document {
-public:
-    Document() {
-        
+    void createdLine(const Line* line) {
+        (void)line;
+        std::cout << "line create" << std::endl;
     }
-    
-private:
-    std::string path;
-    std::string name;
-};
-
-class Model {
-public:
-    Model() {
-        
+    void createdRectangle(const Rectangle* rectangle) {
+        (void)rectangle;
+        std::cout << "rect create" << std::endl;
     }
-    void OpenFile() {
-        editor.OpenFile();
+    void documentOpened(std::string path) {
+        (void)path;
+        std::cout << "document opened" << std::endl;
     }
-    void NewFile() {
-        editor.OpenDocument();
+    void documentCreated() {
+        std::cout << "document created" << std::endl;
     }
-    void SaveFile() {
-        std::cout << "save file" << std::endl;
-    }
-    void CreateGraphicObject() {
-        std::cout << "create graphic object" << std::endl;
-    }
-    void RemoveGraphicObject() {
-        std::cout << "remove gobject" << std::endl;
+    void removedGraphicObject(int id) {
+        (void)id;
+        std::cout << "remove object" << std::endl;
     }
 private:
-    VectorEditor editor;
-};
-
-
-class Controller {
-public:
-    Controller(Model *model) {
-        this->model = model;
-    }
-    void OpenFile() {
-        model->OpenFile();
-    }
-    void NewFile() {
-        model->NewFile();
-    }
-    void SaveFile() {
-        model->SaveFile();
-    }
-    void CreateGraphicObject() {
-        model->CreateGraphicObject();
-    }
-    void RemoveGraphicObject() {
-        model->RemoveGraphicObject();
-    }
-private:
-    Model *model;
+    Controller *controller;
 };
 
 int main() {
-    bool exit = false;
-    Model model;
+    
+    SvgEitor model;
+
     Controller controller(&model);
-    while(!exit) {
-        switch(auto c = getchar()) {
-            case 'o': 
-                controller.OpenFile();
-                break;
-            case 'n': 
-                controller.NewFile();
-                break;
-            case 's': 
-                controller.SaveFile();
-                break;
-            case 'g': 
-                controller.CreateGraphicObject();
-                break;
-            case 'r': 
-                controller.RemoveGraphicObject();
-                break;
-            case 'q': {
-                std::cout << "quite" << std::endl;
-                exit = true;
-                break;
-            }
-            default:
-                break;
-        }
-    }
+    ConsoleView view(&model, &controller);
+    view.start();
+    
     return 0;
 }
