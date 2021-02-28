@@ -4,7 +4,7 @@
 #include <string>
 #include <iostream>
 
-class Observer {
+class EditorObserver {
 public:
     virtual void documentSaved(std::string path) = 0;
     virtual void documentOpened(std::string path) = 0;
@@ -15,9 +15,17 @@ public:
     virtual void removedGraphicObject(int id) = 0;
 };
 
-class Observable {
+class DocumentObserver {
 public:
-    void addObserver(Observer* observer) {
+    virtual void createdCircle(const Circle* circle) = 0;
+    virtual void createdRectangle(const Rectangle* rectangle) = 0;
+    virtual void createdLine(const Line* line) = 0;
+    virtual void removedGraphicObject(int id) = 0;
+};
+
+class EditorObservable {
+public:
+    void addObserver(EditorObserver* observer) {
         std::cout << "add" << std::endl;
         observers.push_back(observer);
         std::cout << "size = " << observers.size() << std::endl;
@@ -34,15 +42,15 @@ public:
         for(unsigned int i = 0; i < observers.size(); i++)
             observers[i]->documentCreated();
     }
-    void createdCircle(const Circle* circle) {
+    void createdCircleNotify(const Circle* circle) {
         for(unsigned int i = 0; i < observers.size(); i++)
             observers[i]->createdCircle(circle);
     }
-    void createRectangle(const Rectangle* rectangle) {
+    void createdRectangleNotify(const Rectangle* rectangle) {
         for(unsigned int i = 0; i < observers.size(); i++)
             observers[i]->createdRectangle(rectangle);
     }
-    void createLine(const Line* line) {
+    void createdLineNotify(const Line* line) {
         for(unsigned int i = 0; i < observers.size(); i++)
             observers[i]->createdLine(line);
     }
@@ -52,36 +60,28 @@ public:
             observers[i]->removedGraphicObject(id);
     }
 private:
-    std::vector<Observer*> observers;
+    std::vector<EditorObserver*> observers;
 };
 
-class Observer2 {
+class DocumentObservable {
 public:
-    virtual void createdCircleInDocument(const Circle* circle) = 0;
-    virtual void createRectangleInDocument(const Rectangle* rectangle) = 0;
-    virtual void createLineInDocument(const Line* line) = 0;
-    virtual void removedGraphicObjectInDocument(int id) = 0;
-};
-
-class Observable2 {
-public:
-    void setObserver(Observer2* observer) {
+    void setObserver(DocumentObserver* observer) {
         this->observer = observer;
     }
     void CircleCreateNotify(const Circle* circle) {
-        observer->createdCircleInDocument(circle);
+        observer->createdCircle(circle);
     }
     void LineCreateNotify(const Line* line) {
-        observer->createLineInDocument(line);
+        observer->createdLine(line);
     }
     void RectangleCreateNotify(const Rectangle* rect) {
-        observer->createRectangleInDocument(rect);
+        observer->createdRectangle(rect);
     }
     void GraphicObjectRemovedNotify(int id) {
-        observer->removedGraphicObjectInDocument(id);
+        observer->removedGraphicObject(id);
     }
 private:
-    Observer2* observer;
+    DocumentObserver* observer;
 };
 
 #endif

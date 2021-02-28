@@ -8,7 +8,7 @@
 #include "Importer.h"
 
 
-class SvgEitor: public Observable, public Observer2 {
+class SvgEitor: public EditorObservable, public DocumentObserver {
 public:
     SvgEitor() {
         currentDocument = nullptr;
@@ -58,23 +58,26 @@ public:
         documentCreatedNotify();
     }
     
-    void removedGraphicObjectInDocument(int id) override {
+    void removedGraphicObject(int id) override {
         removeGraphicObject(id);
     }
 
-    void createdCircleInDocument(const Circle* circle) override {
+    void createdCircle(const Circle* circle) override {
         (void)circle;
-        createdCircle(circle);
+        createdCircleNotify(circle);
     }
-    void createRectangleInDocument(const Rectangle* rectangle) override {
+    void createdRectangle(const Rectangle* rectangle) override {
         (void)rectangle;
-        createRectangle(rectangle);
+        createdRectangleNotify(rectangle);
     }
-    void createLineInDocument(const Line* line) override {
+    void createdLine(const Line* line) override {
         (void)line;
-        createLine(line);
+        createdLineNotify(line);
     }
-
+    SVGDocument* getCurrentDocument() {
+        return currentDocument;
+    }
+private:
     ExportExt getExportExt(std::string path) {
         // todo
         (void)path;
@@ -85,10 +88,6 @@ public:
         (void)path;
         return ImportExt::AI;
     }
-    SVGDocument* getCurrentDocument() {
-        return currentDocument;
-    }
-private:
     SVGDocument* currentDocument;    
 };
 

@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.5)
 
-project(main)
+project(main VERSION 0.0.$ENV{TRAVIS_BUILD_NUMBER})
 
 add_executable(main main.cpp GraphicObject.h Exporter.h Importer.h SVGDocument.h Observer.h
 SVGEditor.h Controller.h)

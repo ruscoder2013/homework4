@@ -8,6 +8,9 @@ public:
     GraphicObject(int id) {
         this->id = id;
     }
+    int getId() {
+        return id;
+    }
 private:
     int id;
 };

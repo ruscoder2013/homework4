@@ -6,7 +6,7 @@
 #include "GraphicObject.h"
 #include "Observer.h"
 
-class SVGDocument: public Observable2 {
+class SVGDocument: public DocumentObservable {
 public:
     int CreateCircle(int x, int y, int r) {
         int id = GenerateID();
